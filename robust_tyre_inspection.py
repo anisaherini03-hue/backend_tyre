@@ -24,10 +24,12 @@ from pydantic import BaseModel, Field, ValidationError
 
 from tyre_inspection_schema import TYRE_INSPECTION_SCHEMA, SYSTEM_PROMPT  # sesuaikan import SYSTEM_PROMPT
 
-GEMINI_OPENAI_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 MODEL_CASCADE = [
-    "gemini-2.0-flash"
+    "google/gemma-4-26b-a4b-it:free",
+    "google/gemma-4-31b-it:free",
+    "nvidia/nemotron-nano-12b-v2-vl:free",
 ]
 
 
@@ -83,7 +85,7 @@ async def _call_openrouter(client: httpx.AsyncClient, api_key: str, model: str,
         payload["response_format"] = response_format
 
     resp = await client.post(
-        GEMINI_OPENAI_URL,
+        OPENROUTER_URL,
         json=payload,
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
         timeout=25,
