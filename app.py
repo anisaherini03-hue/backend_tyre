@@ -14,6 +14,11 @@ from robust_tyre_inspection import inspect_tyre_with_cascade, TyreInspectionResu
 # FastAPI Setup
 # ─────────────────────────────────────────
 
+def encode_image_to_base64(image: Image.Image) -> str:
+    buffered = io.BytesIO()
+    image.save(buffered, format="JPEG")
+    return base64.b64encode(buffered.getvalue()).decode("utf-8")
+
 app = FastAPI(title="Tyre Quality Classifier – Gemma Vision")
 
 app.add_middleware(
