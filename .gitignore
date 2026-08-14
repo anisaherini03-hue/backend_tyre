@@ -1,0 +1,20 @@
+# File-file test dan debug (tidak perlu di-upload ke server)
+test_api.py
+test_gemini.py
+test_gemini_openai.py
+test_gemini_vision.py
+find_models.py
+list_models.py
+
+# Model CNN lokal yang sudah tidak digunakan (file sangat besar)
+model_ban.keras
+*.keras
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+*.env
